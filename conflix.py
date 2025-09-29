@@ -73,14 +73,14 @@ def attack(ip: str, port: int, packet_size: int, rate_limit: float):
 def main():
     os.system("clear")
     print(logo)
-    ip = input(" [+] Enter Target IP: ").strip()
+    ip = input("\033[33m==⟩  IP: \033[32m").strip()
     if not validate_ip(ip):
         log_message("Invalid IP address provided. Exiting...")
         sys.exit(1)
 
     try:
         port = int(input("\033[1;35m [+] =⟩ IP (default 80): \033[33m").strip() or 80)
-        packet_size = int(input(" [+] Enter Packet Size (default 1490 bytes): ").strip() or 1490)
+        packet_size = int(input("\033[33m==⟩ Size (default 1490 bytes): \033[32m").strip() or 1490)
         threads = int(input(" [+] Enter Number of Threads (default 4): ").strip() or 4)
         rate_limit = float(input(" [+] Enter Rate Limit (seconds, default 0.01): ").strip() or 0.01)
     except ValueError:
